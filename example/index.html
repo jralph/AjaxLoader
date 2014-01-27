@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AjaxLoader Testing</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+<body>
+	
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				    <span class="sr-only">Toggle navigation</span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				</button>
+				<a href="" class="navbar-brand">AjaxLoader</a>
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a class="ajax ajax-autoload" data-load-to="#ajax-container2" data-content="#ajax-content2" href="test.html">Load First</a></li>
+					<li><a class="ajax ajax-autoload" href="test.html">Load Second</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div id="ajax-container" class="col-md-6">
+
+			</div>
+			<div id="ajax-container2" class="col-md-6">
+
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					    <span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					</button>
+					<a href="" class="navbar-brand">AjaxLoader</a>
+				</div>
+
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a class="ajax" data-load-to="#ajax-container3" data-content="#ajax-content2" href="test.html">Load Third</a></li>
+						<li><a class="ajax" data-load-to="#ajax-container4" href="test.html">Load Fourth</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div id="ajax-container3" class="col-md-6">
+
+			</div>
+			<div id="ajax-container4" class="col-md-6">
+
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<form name="form1" method="post" action="form.php">
+			<input name="name" type="text">
+			<input name="lastname" type="text">
+			<button type="submit">Send</button>
+		</form>
+	</div>
+
+	<div id="ajax-form-container" class="container">
+
+	</div>
+
+	<!-- Latest jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<!-- Load AjaxLoader -->
+	<script src="js/ajaxloader.min.js"></script>
+	<!-- Use AjaxLoader -->
+	<script>
+		(function($){
+			$('a.ajax').ajaxLoader();
+		}(jQuery));
+	</script>
+
+	<!-- Load AjaxPoster -->
+	<script src="js/ajaxform.min.js"></script>
+	<!-- Use AjaxPoster -->
+	<script>
+		(function($){
+			$('form').ajaxForm({
+				data_type: 'json',
+				data_return: function data_return(data, form_name) {
+					switch(form_name) {
+						case 'form1':
+								return '<h1>Hello ' + data.name + ' ' + data.lastname + '</h1>';
+							break;
+					}
+				}
+			});
+		}(jQuery));
+	</script>
+</body>
+</html>
